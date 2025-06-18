@@ -4,6 +4,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const { MongoClient } = require('mongodb');
 
+const path = require('path');
+
 dotenv.config();
 
 const app = express();
@@ -11,9 +13,17 @@ const PORT = process.env.PORT || 5002;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "build"))); // Serve static files from 'dist'
+
+// Serve the index.html file when the root is accessed
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 // MongoDB connection
-const MONGODB_URI = 'mongodb+srv://Khushi:Kushi1428@cluster0.iza2tmt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const MONGODB_URI = process.env.MONGODB_URI;
+console.log(MONGODB_URI);
+
 const DB_NAME = 'HOMO';
 const COLLECTION_NAME = 'VEHICLED';
 
