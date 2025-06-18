@@ -1,0 +1,32 @@
+{
+  "name": "battery-monitoring-system",
+  "version": "1.0.0",
+  "description": "Vehicle Battery Monitoring System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "@radix-ui/react-scroll-area": "^1.2.9",
+    "@radix-ui/react-select": "^2.2.5",
+    "@radix-ui/react-tabs": "^1.1.12",
+    "@tremor/react": "^3.18.7",
+    "axios": "^1.9.0",
+    "chart.js": "^4.4.9",
+    "clsx": "^2.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "lucide-react": "^0.511.0",
+    "mongodb": "^6.16.0",
+    "mongoose": "^7.0.3",
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^3.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
