@@ -168,10 +168,10 @@ const MotorDashboard = () => {
   };
 
   const getMotorStatusColor = (motor) => {
-    if (motor.motor_fault > 0) return 'bg-red-100 text-red-800 border-red-200';
-    if (motor.motor_rpm > 0 && motor.motor_ign === 1) return 'bg-green-100 text-green-800 border-green-200';
-    if (motor.motor_ign === 1) return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-    return 'bg-gray-100 text-gray-800 border-gray-200';
+    if (motor.motor_fault > 0) return 'bg-red-600 text-white border-red-700';
+    if (motor.motor_rpm > 0 && motor.motor_ign === 1) return 'bg-green-600 text-white border-green-700';
+    if (motor.motor_ign === 1) return 'bg-yellow-600 text-white border-yellow-700';
+    return 'bg-gray-600 text-white border-gray-700';
   };
 
   const getMotorStatus = (motor) => {
@@ -350,7 +350,7 @@ const MotorDashboard = () => {
                     </div>
                   </div>
                 </div>
-                <Badge className={`${getMotorStatusColor(motor)} border flex items-center gap-1`}>
+                <Badge className={`${getMotorStatusColor(motor)} border shadow-sm flex items-center gap-1.5 px-2.5 py-1 font-medium`}>
                   {getMotorStatusIcon(motor)}
                   {getMotorStatus(motor)}
                 </Badge>

@@ -1357,7 +1357,7 @@ const BatteryDashboard = () => {
   // Calculate default date range (today by default)
   const today = new Date().toISOString().split('T')[0];
 
-  const [selectedDeviceName, setSelectedDeviceName] = useState('DC 01-P-01'); // Default to user-friendly name
+  const [selectedDeviceName, setSelectedDeviceName] = useState('AB 01-E-01'); // Default to user-friendly name
   const [startDate, setStartDate] = useState(today); // Start date for date range
   const [endDate, setEndDate] = useState(today); // End date for date range
   const [data, setData] = useState([]);
