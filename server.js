@@ -3,8 +3,8 @@ const axios = require('axios');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const { MongoClient } = require('mongodb');
-
 const path = require('path');
+const fs = require('fs');
 
 dotenv.config();
 
@@ -13,7 +13,21 @@ const PORT = process.env.PORT || 5002;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "frontend/build")));
+
+// Log the current directory and build path
+console.log('Current directory:', __dirname);
+console.log('Build path:', path.join(__dirname, 'frontend', 'build'));
+
+// Check if build directory exists
+const buildPath = path.join(__dirname, 'frontend', 'build');
+if (fs.existsSync(buildPath)) {
+  console.log('Build directory exists');
+} else {
+  console.log('Build directory does not exist');
+}
+
+// Serve static files from the React app
+app.use(express.static(buildPath));
 
 // Serve the index.html file when the root is accessed
 app.get("/", (req, res) => {
@@ -229,7 +243,12 @@ app.get('/api/battery-data', async (req, res) => {
 // The "catch-all" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
+  const indexPath = path.join(buildPath, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    res.status(404).send('Build files not found. Please ensure the frontend is built correctly.');
+  }
 });
 
 app.listen(PORT, () => {
