@@ -59,7 +59,7 @@ const VehicleDashboard = () => {
       setError(null);
       
       // Use the enhanced endpoint that combines API and MongoDB data
-      const response = await fetch(`http://localhost:5002/api/vehicles-enhanced?currentIndex=${page}&sizePerPage=${sizePerPage}`);
+      const response = await fetch(`https://dashboard-v0-k2gn.onrender.com/api/vehicles-enhanced?currentIndex=${page}&sizePerPage=${sizePerPage}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
