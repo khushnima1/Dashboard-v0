@@ -13,11 +13,11 @@ const PORT = process.env.PORT || 5002;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "build"))); // Serve static files from 'dist'
+app.use(express.static(path.join(__dirname, "frontend/build")));
 
 // Serve the index.html file when the root is accessed
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
 });
 
 // MongoDB connection
@@ -224,6 +224,12 @@ app.get('/api/battery-data', async (req, res) => {
       details: error.response?.data || error.message
     });
   }
+});
+
+// The "catch-all" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
 });
 
 app.listen(PORT, () => {
